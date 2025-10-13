@@ -1,5 +1,5 @@
 project:
   title: 'Empirical bias-reducing adjustments for Iterm Response Theory (IRT) models'
-  output-dir: docs/
+  output-dir: 'docs/'
 
 
