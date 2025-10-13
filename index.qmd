@@ -21,10 +21,11 @@ author:
     affiliations: 
       - 'Research Specialist, BAYESCOMP @ CEMSE-KAUST'
       - '<span style="font-style:normal;">[`https://haziqj.ml/irtbias-kasa25`](https://haziqj.ml/irtbias-kasa25)</span>'
-  - name: Ioannis Kosmidis
-    orcid: 0000-0002-8723-4866
-    affiliations: 
-      - 'Professor of Statistics @ University of Warwick'      
+      - 'Joint work with Ioannis Kosmidis (Warwick)'
+  # - name: Ioannis Kosmidis
+  #   orcid: 0000-0002-8723-4866
+  #   affiliations: 
+  #     - 'Professor of Statistics @ University of Warwick'      
 date: '`r Sys.Date()`'
 bibliography: refs.bib
 execute:
