@@ -10,7 +10,7 @@ $kaust: (
   sat: (
     pur: #9C6FAE, blu: #5284C4, tur: #00A6AA,
     grn: #adbf04, yel: #F0B500, org: #F18F00,
-    bla: #131516, mer: #b10f2e, grnn: #C8DE00
+    bla: #131516, mer: #b10f2e, grnn: #C8DE00, gry: #B5ABA1
   ),
   satsh: (
     pur: #6D2463, blu: #003B75, tur: #004C59,
@@ -234,7 +234,6 @@ $selection-bg: kaust(tur) !default;
   
   li:before {
     content: $whitecircle;
-    // color: mix($ubdblue, white, 60%);
     color: kaust(gry, nshd);
     display: inline-block;
     width: 0.3em;
@@ -242,6 +241,21 @@ $selection-bg: kaust(tur) !default;
     margin-right: 0.8em;
   }
 }
+
+.reveal ul ul ul {
+  list-style: none;
+  font-size: 90%;
+
+  li::before {
+    content: $right-arrow;
+
+
+  }
+  
+  li::marker {
+   color: kaust(gry, nshd); // assumes your SCSS color fn exists
+  }
+} 
 
 // Ordered lists
 
@@ -476,7 +490,7 @@ span.math.inline, span.math.display {
 .reveal aside {
   color: kaust(yel);
   position: absolute;
-  bottom: -15px !important;
+  bottom: -13px !important;
   left: 0px !important;
 }
 
@@ -525,6 +539,7 @@ div.figure {
   // Remove default borders to start with a clean slate
   border-collapse: collapse;
   border: none;
+  font-size: 85%;
 
   // Target the header row for the top and midline
   thead {
@@ -533,13 +548,14 @@ div.figure {
         border-top: 2px solid black; // Top line above headers
         border-bottom: 2px solid black; // Midline below headers
         padding: 8px; // Adjust padding as needed
-        text-align: left; // Adjust text alignment as preferred
+        text-align: left;   // 👈 this ensures left alignment
       }
     }
   }
-
+  
   tbody tr td {
     border: none;
+    padding-block: 4px;
   }
   
   // Target the last row in the tbody to apply the bottom border
@@ -548,6 +564,18 @@ div.figure {
       border-top: 2px solid black; // Apply a solid bottom border
     }
   }
+  
+  &.is-dense {
+    //font-size: 0.8rem;
+    th, td { line-height: 1.15; }
+  }
+}
+
+.reveal .slides section table.my-table {
+  margin-top: 1em !important;
+  margin-left: 0 !important;
+  margin-right: auto !important; /* cancels centering */
+  display: table;                /* ensure block-like behavior */
 }
 
 // Callout blocks

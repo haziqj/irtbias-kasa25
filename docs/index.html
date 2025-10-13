@@ -29,6 +29,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -50,7 +116,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-443da90d614da2b64081eaee399990a7.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-b01e24a9d495efef85f05a0998dfa0fe.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -161,10 +227,10 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
             Research Specialist, BAYESCOMP @ CEMSE-KAUST
           </p>
         <p class="quarto-title-affiliation">
-            <span style="font-style:normal;"><a href="https://haziqj.ml/irtbias-kasa25"><code>https://haziqj.ml/irtbias-kasa25</code></a></span>
+            Joint work with Ioannis Kosmidis (Warwick)
           </p>
         <p class="quarto-title-affiliation">
-            Joint work with Ioannis Kosmidis (Warwick)
+            <span style="font-style:normal;"><a href="https://haziqj.ml/irtbias-kasa25"><code>https://haziqj.ml/irtbias-kasa25</code></a></span>
           </p>
     </div>
 </div>
@@ -173,9 +239,1052 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>Hello, World!</p>
-<p><span class="citation" data-cites="cox1968general">Cox and Snell (<a href="#/references" role="doc-biblioref" onclick="">1968</a>)</span> said…</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/eg1.jpg" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:68%;">
+<div class="nudge-down-small">
+<p>In <em>educational assessments</em>, data <span class="math display">\[
+\mathbf Y_s^\top=(Y_{s1},\dots,Y_{sp})
+\]</span></p>
+<p>are composed of several test items from students indexed <span class="math inline">\(s=1,\dots,n\)</span>. Each item is marked either <span class="text-blu">correct</span> (<span class="math inline">\(Y_{si}=1\)</span>) or <span class="text-mer">wrong</span> (<span class="math inline">\(Y_{si}=0\)</span>), <span class="math inline">\(i=1,\dots,p\)</span>.</p>
+</div>
+</div></div>
+<div class="nudge-up-small">
+<p>It is common to enquire, from this set of data, the <strong>reliability</strong> and <strong>validity</strong> of the assessment, including:</p>
+<ol type="1">
+<li class="fragment">How <strong>difficult</strong> is each test item?</li>
+<li class="fragment">How well do they <strong>discriminate</strong> between students of different ability levels?</li>
+<li class="fragment">Can I accurately estimate students’ <strong>abilities</strong>?</li>
+</ol>
+<!-- The IRT family of models provides a statistical framework for addressing these sorts of questions. -->
+</div>
 </section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<h3 id="a-typical-data-set">A typical data set</h3>
+<table class="my-table caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Student</th>
+<th style="text-align: right;">Item1</th>
+<th style="text-align: right;">Item2</th>
+<th style="text-align: right;">Item3</th>
+<th style="text-align: right;">Item4</th>
+<th style="text-align: right;">Item5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-cont." class="slide level2">
+<h2>Example (cont.)</h2>
+<h3 id="simple-sum-scores-and-item-difficulties">Simple sum scores and item difficulties</h3>
+<table class="my-table caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Student</th>
+<th style="text-align: right;">Item1</th>
+<th style="text-align: right;">Item2</th>
+<th style="text-align: right;">Item3</th>
+<th style="text-align: right;">Item4</th>
+<th style="text-align: right;">Item5</th>
+<th style="text-align: right;"><strong>Score</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"><strong>5</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"><strong>4</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"><strong>4</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>4</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>4</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>2</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Difficulty</strong></td>
+<td style="text-align: right;"><strong>4</strong></td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>3</strong></td>
+<td style="text-align: right;"><strong>7</strong></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-cont.-1" class="slide level2">
+<h2>Example (cont.)</h2>
+<h3 id="item-discrimination">Item discrimination</h3>
+<table class="my-table is-dense caption-top">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Student</th>
+<th style="text-align: right;">Item1</th>
+<th style="text-align: right;">Item2</th>
+<th style="text-align: right;">Item3</th>
+<th style="text-align: right;">Item4</th>
+<th style="text-align: right;">Item5</th>
+<th style="text-align: right;"><strong>Score</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><strong><span class="text-blu">5</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="text-blu">2</span></td>
+<td style="text-align: right;"><span class="text-blu">0</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><strong><span class="text-blu">4</span></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-blu">3</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">0</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><strong><span class="text-blu">4</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="text-blu">4</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">0</span></td>
+<td style="text-align: right;"><strong><span class="text-blu">4</span></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-blu">5</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">1</span></td>
+<td style="text-align: right;"><span class="text-blu">0</span></td>
+<td style="text-align: right;"><strong><span class="text-blu">4</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong><span class="text-blu">Difficulty</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-blu">1</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-blu">0</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-blu">1</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-blu">0</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-blu">2</span></strong></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<table class="my-table is-dense caption-top">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 18%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-mer">6</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">1</span></td>
+<td style="text-align: right;"><span class="text-mer">1</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><strong><span class="text-mer">2</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="text-mer">7</span></td>
+<td style="text-align: right;"><span class="text-mer">1</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><strong><span class="text-mer">1</span></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-mer">8</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">1</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><strong><span class="text-mer">1</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="text-mer">9</span></td>
+<td style="text-align: right;"><span class="text-mer">1</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><strong><span class="text-mer">1</span></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="text-mer">10</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><span class="text-mer">0</span></td>
+<td style="text-align: right;"><strong><span class="text-mer">0</span></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong><span class="text-mer">Difficulty</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-mer">3</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-mer">5</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-mer">4</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-mer">3</span></strong></td>
+<td style="text-align: right;"><strong><span class="text-mer">5</span></strong></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="item-response-theory-irt-models" class="slide level2">
+<h2>Item Response Theory (IRT) models</h2>
+<ul>
+<li><p>Assume independent Bernoulli responses, i.e.&nbsp; <span class="math display">\[
+Y_{si} = \begin{cases}
+1 \text{ (correct)} &amp; \text{w.p. } \pi_{si} \\
+0 \text{ (wrong)}&amp; \text{w.p. } 1-\pi_{si}
+\end{cases}
+\]</span></p></li>
+<li><p>Model success probabilities using the two-parameter logistic (2PL) model: <span class="math display">\[
+\pi_{si}(\mathbf{z}, \boldsymbol{\theta}) :=
+\Pr(Y_{si} = 1 \mid \mathbf{z}, \boldsymbol{\theta}) =
+\frac{e^{a_i(z_s - b_i)}}{1 + e^{a_i(z_s - b_i)} }
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\mathbf z=(z_1,\dots,z_n)^\top\)</span> are individual <em>latent traits</em>;</li>
+<li><span class="math inline">\(\boldsymbol{\theta}=(\mathbf a^\top, \mathbf b^\top)^\top\)</span> are <em>item parameters</em>, including
+<ul>
+<li><em>discrimination</em> parameters <span class="math inline">\(\mathbf a=(a_1,\dots,a_p)^\top\)</span>; and</li>
+<li><em>difficulty</em> parameters <span class="math inline">\(\mathbf b=(b_1,\dots,b_p)^\top\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><p>The 2PL is a member of the wide class of IRT models (e.g.&nbsp;1PL a.k.a. Rasch model, 3PL, 4PL, MIRT, partial credit model, etc.).</p></li>
+</ul>
+</section>
+<section id="interpretation" class="slide level2">
+<h2>Interpretation</h2>
+<h3 id="effect-of-item-difficulties-on-response-probabilities">Effect of item difficulties on response probabilities</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation-1" class="slide level2">
+<h2>Interpretation</h2>
+<h3 id="effect-of-item-discriminations-on-response-probabilities">Effect of item discriminations on response probabilities</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimation-via-maximum-marginal-likelihood-mml" class="slide level2">
+<h2>Estimation via maximum marginal likelihood (MML)</h2>
+<ul>
+<li><p>Maximum marginal likelihood (MML) estimation <span class="text-gry">[c.f. joint maximum likelihood (JML)]</span> requires an additional assumption: <span class="math inline">\(z_s \overset{\text{iid}}\sim N(0, 1)\)</span>.</p></li>
+<li><p>Given data <span class="math inline">\(\mathbf Y = \mathbf y\)</span>, the MML involves maximisation of the likelihood <span class="math display">\[
+L(\mathbf\theta) = \prod_{s=1}^n \int \prod_{i=1}^p \pi_{si}(\mathbf z,\boldsymbol\theta)^{y_{si}}\big(1-\pi_{si}(\mathbf z,\boldsymbol\theta)\big)^{1-y_{si}} \phi(z_s) \ \text{d} z_s
+\]</span></p></li>
+<li><p>This intractable integral is usually overcome using quadrature rules.</p></li>
+<li><p>Many software to fit IRT models use MML, e.g.&nbsp;<code>{mirt}</code> <span class="citation" data-cites="chalmers2012mirt">(<a href="#/references" role="doc-biblioref" onclick="">Chalmers 2012</a>)</span> and <code>{ltm}</code> <span class="citation" data-cites="rizopoulos2007ltm">(<a href="#/references" role="doc-biblioref" onclick="">Rizopoulos 2007</a>)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>fit <span class="ot">&lt;-</span> ltm<span class="sc">::</span><span class="fu">ltm</span>(data <span class="sc">~</span> z1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Bayesian: Stan via <code>{brms}</code> <span class="citation" data-cites="burkner2021bayesian">(<a href="#/references" role="doc-biblioref" onclick="">Bürkner 2021</a>)</span>, and even INLA too.</p></li>
+</ul>
+</section>
+<section id="small-sample-bias" class="slide level2">
+<h2>Small sample bias</h2>
+<ul>
+<li>Bias from MML estimates is <span class="math inline">\(O(n^{-1})\)</span>, so in finite samples the bias is typically non-zero <span class="citation" data-cites="lord1986maximum">(<a href="#/references" role="doc-biblioref" onclick="">Lord 1986</a>)</span>, though generally less biased than JML.
+<ul>
+<li>Parameters are consistent only when model is correctly specified <span class="citation" data-cites="bock1981marginal">(<a href="#/references" role="doc-biblioref" onclick="">Bock and Aitkin 1981</a>)</span>.</li>
+<li>MML is more robust to sample size variations and provides more stable item parameter estimates <span class="citation" data-cites="engelen1987review">(<a href="#/references" role="doc-biblioref" onclick="">Engelen 1987</a>)</span>.</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bias-correction" class="slide level2">
+<h2>Bias correction</h2>
+<div class="nudge-up-large">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/bias.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="nudge-up-small">
+<div class="nudge-up-large">
+<div class="cell">
+<div class="cell-output-display" data-html-table-processing="none">
+<div id="tcippmdgzr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#tcippmdgzr table {
+  font-family: Raleway, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tcippmdgzr thead, #tcippmdgzr tbody, #tcippmdgzr tfoot, #tcippmdgzr tr, #tcippmdgzr td, #tcippmdgzr th {
+  border-style: none;
+}
+
+#tcippmdgzr p {
+  margin: 0;
+  padding: 0;
+}
+
+#tcippmdgzr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 25px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 95%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tcippmdgzr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tcippmdgzr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tcippmdgzr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tcippmdgzr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tcippmdgzr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tcippmdgzr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tcippmdgzr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tcippmdgzr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tcippmdgzr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tcippmdgzr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tcippmdgzr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tcippmdgzr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tcippmdgzr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tcippmdgzr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcippmdgzr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tcippmdgzr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tcippmdgzr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tcippmdgzr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcippmdgzr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tcippmdgzr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcippmdgzr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tcippmdgzr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcippmdgzr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tcippmdgzr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcippmdgzr .gt_left {
+  text-align: left;
+}
+
+#tcippmdgzr .gt_center {
+  text-align: center;
+}
+
+#tcippmdgzr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tcippmdgzr .gt_font_normal {
+  font-weight: normal;
+}
+
+#tcippmdgzr .gt_font_bold {
+  font-weight: bold;
+}
+
+#tcippmdgzr .gt_font_italic {
+  font-style: italic;
+}
+
+#tcippmdgzr .gt_super {
+  font-size: 65%;
+}
+
+#tcippmdgzr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tcippmdgzr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tcippmdgzr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tcippmdgzr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tcippmdgzr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tcippmdgzr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tcippmdgzr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tcippmdgzr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tcippmdgzr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold" scope="col" id="Method">Method</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold" scope="col" id="Model">Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold" scope="col" id="BG_theta0"><span data-qmd-base64="JFxtYXRoY2Fse0J9KFxiYXJcdmFydGhldGEpJA=="><span class="gt_from_md">\(\mathcal{B}(\bar\vartheta)\)</span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold" scope="col" id="Type">Type</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="**Requirements**">
+        <div class="gt_column_spanner"><span data-qmd-base64="KipSZXF1aXJlbWVudHMqKg=="><span class="gt_from_md"><strong>Requirements</strong></span></span></div>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-weight: bold" scope="col" id="E"><span data-qmd-base64="JFxtYXRoYmJ7RX0oXGNkb3QpJA=="><span class="gt_from_md">\(\mathbb{E}(\cdot)\)</span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-weight: bold" scope="col" id="d"><span data-qmd-base64="JFxoc3BhY2V7MnB0fSBccGFydGlhbCBcY2RvdCBcaHNwYWNlezJwdH0k"><span class="gt_from_md">\(\hspace{2pt} \partial \cdot \hspace{2pt}\)</span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-weight: bold" scope="col" id="theta_hat"><span data-qmd-base64="JFxoc3BhY2V7NHB0fSBcaGF0XHZhcnRoZXRhIFxoc3BhY2V7NHB0fSQ="><span class="gt_from_md">\(\hspace{4pt} \hat\vartheta \hspace{4pt}\)</span></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_right gt_stub">1</th>
+<td headers="stub_1_1 Method" class="gt_row gt_left">Asymptotic bias correction</td>
+<td headers="stub_1_1 Model" class="gt_row gt_left">full</td>
+<td headers="stub_1_1 BG_theta0" class="gt_row gt_left">analytical</td>
+<td headers="stub_1_1 Type" class="gt_row gt_left">explicit</td>
+<td headers="stub_1_1 E" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_1 d" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_1 theta_hat" class="gt_row gt_center"><span style="color:#004C59">✓</span></td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_right gt_stub">2</th>
+<td headers="stub_1_2 Method" class="gt_row gt_left">Adjusted score functions</td>
+<td headers="stub_1_2 Model" class="gt_row gt_left">full</td>
+<td headers="stub_1_2 BG_theta0" class="gt_row gt_left">analytical</td>
+<td headers="stub_1_2 Type" class="gt_row gt_left">implicit</td>
+<td headers="stub_1_2 E" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_2 d" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_2 theta_hat" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_right gt_stub">3</th>
+<td headers="stub_1_3 Method" class="gt_row gt_left">Bootstrap</td>
+<td headers="stub_1_3 Model" class="gt_row gt_left">partial</td>
+<td headers="stub_1_3 BG_theta0" class="gt_row gt_left">simulation</td>
+<td headers="stub_1_3 Type" class="gt_row gt_left">explicit</td>
+<td headers="stub_1_3 E" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_3 d" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_3 theta_hat" class="gt_row gt_center"><span style="color:#004C59">✓</span></td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_right gt_stub">4</th>
+<td headers="stub_1_4 Method" class="gt_row gt_left">Jackknife</td>
+<td headers="stub_1_4 Model" class="gt_row gt_left">partial</td>
+<td headers="stub_1_4 BG_theta0" class="gt_row gt_left">simulation</td>
+<td headers="stub_1_4 Type" class="gt_row gt_left">explicit</td>
+<td headers="stub_1_4 E" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_4 d" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_4 theta_hat" class="gt_row gt_center"><span style="color:#004C59">✓</span></td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_right gt_stub">5</th>
+<td headers="stub_1_5 Method" class="gt_row gt_left">Indirect inference</td>
+<td headers="stub_1_5 Model" class="gt_row gt_left">full</td>
+<td headers="stub_1_5 BG_theta0" class="gt_row gt_left">simulation</td>
+<td headers="stub_1_5 Type" class="gt_row gt_left">implicit</td>
+<td headers="stub_1_5 E" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_5 d" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_5 theta_hat" class="gt_row gt_center"><span style="color:#004C59">✓</span></td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_right gt_stub">6</th>
+<td headers="stub_1_6 Method" class="gt_row gt_left">Explicit RBM</td>
+<td headers="stub_1_6 Model" class="gt_row gt_left">partial</td>
+<td headers="stub_1_6 BG_theta0" class="gt_row gt_left">analytical</td>
+<td headers="stub_1_6 Type" class="gt_row gt_left">explicit</td>
+<td headers="stub_1_6 E" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_6 d" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_6 theta_hat" class="gt_row gt_center"><span style="color:#004C59">✓</span></td></tr>
+    <tr><th id="stub_1_7" scope="row" class="gt_row gt_right gt_stub">7</th>
+<td headers="stub_1_7 Method" class="gt_row gt_left">Implicit RBM</td>
+<td headers="stub_1_7 Model" class="gt_row gt_left">partial</td>
+<td headers="stub_1_7 BG_theta0" class="gt_row gt_left">analytical</td>
+<td headers="stub_1_7 Type" class="gt_row gt_left">implicit</td>
+<td headers="stub_1_7 E" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td>
+<td headers="stub_1_7 d" class="gt_row gt_center"><span style="color:#004C59">✓</span></td>
+<td headers="stub_1_7 theta_hat" class="gt_row gt_center"><span style="color:#b10f2e">✗</span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<aside><div>
+<div class="footnotesize-text">
+<p>1–<span class="citation" data-cites="efron1975defining">Efron (<a href="#/references" role="doc-biblioref" onclick="">1975</a>)</span>, <span class="citation" data-cites="cordeiro1991bias">Cordeiro and McCullagh (<a href="#/references" role="doc-biblioref" onclick="">1991</a>)</span>; 2–<span class="citation" data-cites="firth1993bias">Firth (<a href="#/references" role="doc-biblioref" onclick="">1993</a>)</span>, <span class="citation" data-cites="kosmidis2009bias">Kosmidis and Firth (<a href="#/references" role="doc-biblioref" onclick="">2009</a>)</span>; 3–<span class="citation" data-cites="efron1994introduction">Efron and Tibshirani (<a href="#/references" role="doc-biblioref" onclick="">1994</a>)</span>, <span class="citation" data-cites="hall1988bootstrap">Hall and Martin (<a href="#/references" role="doc-biblioref" onclick="">1988</a>)</span>; 4–<span class="citation" data-cites="quenouille1956notes">Quenouille (<a href="#/references" role="doc-biblioref" onclick="">1956</a>)</span>, <span class="citation" data-cites="efron1982jackknife">Efron (<a href="#/references" role="doc-biblioref" onclick="">1982</a>)</span>; 5–<span class="citation" data-cites="gourieroux1993indirect">Gourieroux, Monfort, and Renault (<a href="#/references" role="doc-biblioref" onclick="">1993</a>)</span>, <span class="citation" data-cites="mackinnon1998approximate">MacKinnon and Smith Jr (<a href="#/references" role="doc-biblioref" onclick="">1998</a>)</span></p>
+</div>
+</div></aside></section>
 <section>
 <section id="شكرا-جزيلا" class="title-slide slide level1 thanks-slide center" data-background-image="_extensions/haziqj/kaust/KAUST-Thank-you.jpg" style="padding-top:0.5em;padding-bottom:0em">
 <h1>شكراً جزيلاً</h1>
@@ -185,8 +1294,53 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 <h2>References</h2>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-cox1968general" class="csl-entry" role="listitem">
-Cox, D. R., and E. J. Snell. 1968. <span>“A <span>General Definition</span> of <span>Residuals</span>.”</span> <em>Journal of the Royal Statistical Society. Series B (Methodological)</em> 30 (2): 248–75. <a href="https://www.jstor.org/stable/2984505">https://www.jstor.org/stable/2984505</a>.
+<div id="ref-bock1981marginal" class="csl-entry" role="listitem">
+Bock, R. Darrell, and Murray Aitkin. 1981. <span>“Marginal Maximum Likelihood Estimation of Item Parameters: <span>Application</span> of an <span>EM</span> Algorithm.”</span> <em>Psychometrika</em> 46 (4): 443–59. <a href="https://doi.org/10.1007/BF02293801">https://doi.org/10.1007/BF02293801</a>.
+</div>
+<div id="ref-burkner2021bayesian" class="csl-entry" role="listitem">
+Bürkner, Paul-Christian. 2021. <span>“Bayesian Item Response Modeling in r with Brms and Stan.”</span> <em>Journal of Statistical Software</em> 100: 1–54.
+</div>
+<div id="ref-chalmers2012mirt" class="csl-entry" role="listitem">
+Chalmers, R Philip. 2012. <span>“Mirt: A Multidimensional Item Response Theory Package for the r Environment.”</span> <em>Journal of Statistical Software</em> 48: 1–29.
+</div>
+<div id="ref-cordeiro1991bias" class="csl-entry" role="listitem">
+Cordeiro, Gauss M., and Peter McCullagh. 1991. <span>“Bias Correction in Generalized Linear Models.”</span> <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em> 53 (3): 629–43.
+</div>
+<div id="ref-efron1975defining" class="csl-entry" role="listitem">
+Efron, Bradley. 1975. <span>“Defining the Curvature of a Statistical Problem (with Applications to Second Order Efficiency).”</span> <em>The Annals of Statistics</em>, 1189–1242. <a href="https://www.jstor.org/stable/2958246">https://www.jstor.org/stable/2958246</a>.
+</div>
+<div id="ref-efron1982jackknife" class="csl-entry" role="listitem">
+———. 1982. <em>The <span>Jackknife</span>, the <span>Bootstrap</span> and <span>Other Resampling Plans</span></em>. <span>Society for Industrial and Applied Mathematics</span>. <a href="https://doi.org/10.1137/1.9781611970319">https://doi.org/10.1137/1.9781611970319</a>.
+</div>
+<div id="ref-efron1994introduction" class="csl-entry" role="listitem">
+Efron, Bradley, and R. J. Tibshirani. 1994. <em>An <span>Introduction</span> to the <span>Bootstrap</span></em>. New York: <span>Chapman and Hall/CRC</span>. <a href="https://doi.org/10.1201/9780429246593">https://doi.org/10.1201/9780429246593</a>.
+</div>
+<div id="ref-engelen1987review" class="csl-entry" role="listitem">
+Engelen, Ronald Joseph Hubert. 1987. <span>“A Review of Different Estimation Procedures in the <span>Rasch</span> Model.”</span>
+</div>
+<div id="ref-firth1993bias" class="csl-entry" role="listitem">
+Firth, David. 1993. <span>“Bias Reduction of Maximum Likelihood Estimates.”</span> <em>Biometrika</em> 80 (1): 27–38. <a href="https://doi.org/10.1093/biomet/80.1.27">https://doi.org/10.1093/biomet/80.1.27</a>.
+</div>
+<div id="ref-gourieroux1993indirect" class="csl-entry" role="listitem">
+Gourieroux, C., A. Monfort, and E. Renault. 1993. <span>“Indirect Inference.”</span> <em>Journal of Applied Econometrics</em> 8 (S1): S85–118. <a href="https://doi.org/10.1002/jae.3950080507">https://doi.org/10.1002/jae.3950080507</a>.
+</div>
+<div id="ref-hall1988bootstrap" class="csl-entry" role="listitem">
+Hall, Peter, and Michael A. Martin. 1988. <span>“On Bootstrap Resampling and Iteration.”</span> <em>Biometrika</em> 75 (4): 661–71.
+</div>
+<div id="ref-kosmidis2009bias" class="csl-entry" role="listitem">
+Kosmidis, Ioannis, and David Firth. 2009. <span>“Bias Reduction in Exponential Family Nonlinear Models.”</span> <em>Biometrika</em> 96 (4): 793–804.
+</div>
+<div id="ref-lord1986maximum" class="csl-entry" role="listitem">
+Lord, Frederic M. 1986. <span>“Maximum <span>Likelihood</span> and <span>Bayesian Parameter Estimation</span> in <span>Item Response Theory</span>.”</span> <em>Journal of Educational Measurement</em> 23 (2): 157–62. <a href="https://www.jstor.org/stable/1434513">https://www.jstor.org/stable/1434513</a>.
+</div>
+<div id="ref-mackinnon1998approximate" class="csl-entry" role="listitem">
+MacKinnon, James G., and Anthony A. Smith Jr. 1998. <span>“Approximate Bias Correction in Econometrics.”</span> <em>Journal of Econometrics</em> 85 (2): 205–30.
+</div>
+<div id="ref-quenouille1956notes" class="csl-entry" role="listitem">
+Quenouille, Maurice H. 1956. <span>“Notes on Bias in Estimation.”</span> <em>Biometrika</em> 43 (3/4): 353–60. <a href="https://www.jstor.org/stable/2332914">https://www.jstor.org/stable/2332914</a>.
+</div>
+<div id="ref-rizopoulos2007ltm" class="csl-entry" role="listitem">
+Rizopoulos, Dimitris. 2007. <span>“Ltm: An r Package for Latent Variable Modeling and Item Response Analysis.”</span> <em>Journal of Statistical Software</em> 17: 1–25.
 </div>
 </div>
 </section></section>

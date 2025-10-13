@@ -16,22 +16,24 @@ format:
     code-block-height: 700px
     html-table-processing: none
 author:
+  #     - 'Professor of Statistics @ University of Warwick'      
   - name: Haziq Jamil
     orcid: 0000-0003-3298-1010
     affiliations: 
       - 'Research Specialist, BAYESCOMP @ CEMSE-KAUST'
-      - '<span style="font-style:normal;">[`https://haziqj.ml/irtbias-kasa25`](https://haziqj.ml/irtbias-kasa25)</span>'
       - 'Joint work with Ioannis Kosmidis (Warwick)'
+      - '<span style="font-style:normal;">[`https://haziqj.ml/irtbias-kasa25`](https://haziqj.ml/irtbias-kasa25)</span>'
   # - name: Ioannis Kosmidis
   #   orcid: 0000-0002-8723-4866
   #   affiliations: 
-  #     - 'Professor of Statistics @ University of Warwick'      
 date: '`r Sys.Date()`'
 bibliography: refs.bib
 execute:
   echo: false
   freeze: false  # auto
   cache: false
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Introduction
@@ -39,11 +41,305 @@ execute:
 ```{r}
 #| include: false
 library(tidyverse)
+library(directlabels)
 ```
 
-Hello, World!
 
-@cox1968general said...
+::: {.columns}
+
+::: {.column width="30%"}
+![](figures/eg1.jpg){width="85%" fig-align="center"}
+:::
+
+::: {.column width="68%"}
+::: {.nudge-down-small}
+In *educational assessments*, data 
+$$
+\mathbf Y_s^\top=(Y_{s1},\dots,Y_{sp})
+$$ 
+
+are composed of several test items from students indexed $s=1,\dots,n$. 
+Each item is marked either [correct]{.text-blu} ($Y_{si}=1$) or [wrong]{.text-mer} ($Y_{si}=0$), $i=1,\dots,p$.
+:::
+:::
+:::
+
+::: {.nudge-up-small}
+::: {.incremental}
+It is common to enquire, from this set of data, the **reliability** and **validity** of the assessment, including:
+
+1. How **difficult** is each test item?
+2. How well do they **discriminate** between students of different ability levels? 
+3. Can I accurately estimate students' **abilities**? 
+
+<!-- The IRT family of models provides a statistical framework for addressing these sorts of questions. -->
+:::
+:::
+
+## Example
+
+### A typical data set
+
+|   | Student | Item1 | Item2 | Item3 | Item4 | Item5 |
+|---|:--------|------:|------:|------:|------:|------:|
+|   | 1       |     1 |     1 |     1 |     1 |     1 |
+|   | 2       |     0 |     1 |     1 |     1 |     1 |
+|   | 3       |     1 |     1 |     0 |     1 |     1 |
+|   | 4       |     1 |     1 |     1 |     1 |     0 |
+|   | 5       |     1 |     1 |     1 |     1 |     0 |
+|   | 6       |     0 |     0 |     1 |     1 |     0 |
+|   | 7       |     1 |     0 |     0 |     0 |     0 |
+|   | 8       |     0 |     0 |     0 |     1 |     0 |
+|   | 9       |     1 |     0 |     0 |     0 |     0 |
+|   | 10      |     0 |     0 |     0 |     0 |     0 |
+|   |         |       |       |       |       |       |
+: {.my-table }
+
+
+## Example (cont.)
+
+### Simple sum scores and item difficulties
+
+| Student | Item1 | Item2 | Item3 | Item4 | Item5 | **Score** |
+|:--------|------:|------:|------:|------:|------:|---------:|
+| 1  | 1 | 1 | 1 | 1 | 1 | **5** |
+| 2  | 0 | 1 | 1 | 1 | 1 | **4** |
+| 3  | 1 | 1 | 0 | 1 | 1 | **4** |
+| 4  | 1 | 1 | 1 | 1 | 0 | **4** |
+| 5  | 1 | 1 | 1 | 1 | 0 | **4** |
+| 6  | 0 | 0 | 1 | 1 | 0 | **2** |
+| 7  | 1 | 0 | 0 | 0 | 0 | **1** |
+| 8  | 0 | 0 | 0 | 1 | 0 | **1** |
+| 9  | 1 | 0 | 0 | 0 | 0 | **1** |
+| 10 | 0 | 0 | 0 | 0 | 0 | **0** |
+| **Difficulty** | **4** | **5** | **5** | **3** | **7** |   |
+: {.my-table}
+
+## Example (cont.)
+
+### Item discrimination
+
+
+| Student | Item1 | Item2 | Item3 | Item4 | Item5 | **Score** |
+|--------:|------:|------:|------:|------:|------:|---------:|
+| [1]{.text-blu}  | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | **[5]{.text-blu}** |
+| [2]{.text-blu}  | [0]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | **[4]{.text-blu}** |
+| [3]{.text-blu}  | [1]{.text-blu} | [1]{.text-blu} | [0]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | **[4]{.text-blu}** |
+| [4]{.text-blu}  | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [0]{.text-blu} | **[4]{.text-blu}** |
+| [5]{.text-blu}  | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [1]{.text-blu} | [0]{.text-blu} | **[4]{.text-blu}** |
+| **[Difficulty]{.text-blu}** | **[1]{.text-blu}** | **[0]{.text-blu}** | **[1]{.text-blu}** | **[0]{.text-blu}** | **[2]{.text-blu}** |   |
+: {.my-table .is-dense}
+
+| 
+|--------:|------:|------:|------:|------:|------:|---------:|
+| [6]{.text-mer}  | [0]{.text-mer} | [0]{.text-mer} | [1]{.text-mer} | [1]{.text-mer} | [0]{.text-mer} | **[2]{.text-mer}** |
+| [7]{.text-mer}  | [1]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | **[1]{.text-mer}** |
+| [8]{.text-mer}  | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [1]{.text-mer} | [0]{.text-mer} | **[1]{.text-mer}** |
+| [9]{.text-mer}  | [1]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | **[1]{.text-mer}** |
+| [10]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | [0]{.text-mer} | **[0]{.text-mer}** |
+| **[Difficulty]{.text-mer}** | **[3]{.text-mer}** | **[5]{.text-mer}** | **[4]{.text-mer}** | **[3]{.text-mer}** | **[5]{.text-mer}** |   |
+: {.my-table .is-dense}
+
+## Item Response Theory (IRT) models
+
+- Assume independent Bernoulli responses, i.e. 
+$$
+Y_{si} = \begin{cases}
+1 \text{ (correct)} & \text{w.p. } \pi_{si} \\
+0 \text{ (wrong)}& \text{w.p. } 1-\pi_{si}
+\end{cases}
+$$
+
+- Model success probabilities using the two-parameter logistic (2PL) model:
+$$
+\pi_{si}(\mathbf{z}, \boldsymbol{\theta}) :=
+\Pr(Y_{si} = 1 \mid \mathbf{z}, \boldsymbol{\theta}) =
+\frac{e^{a_i(z_s - b_i)}}{1 + e^{a_i(z_s - b_i)} }
+$$ where
+  - $\mathbf z=(z_1,\dots,z_n)^\top$ are individual *latent traits*;
+  - $\boldsymbol{\theta}=(\mathbf a^\top, \mathbf b^\top)^\top$ are *item parameters*, including
+    - *discrimination* parameters $\mathbf a=(a_1,\dots,a_p)^\top$; and
+    - *difficulty* parameters $\mathbf b=(b_1,\dots,b_p)^\top$.
+
+- The 2PL is a member of the wide class of IRT models (e.g. 1PL a.k.a. Rasch model, 3PL, 4PL, MIRT, partial credit model, etc.).
+
+## Interpretation
+
+### Effect of item difficulties on response probabilities
+
+```{r}
+#| out-width: 100%
+#| fig-height: 3.85
+#| fig-width: 7
+#| fig-align: center
+eta_fun <- function(alpha, beta, z, IRT_param = FALSE) {
+    if (isTRUE(IRT_param)) {
+        sweep(tcrossprod(z, beta), 2, alpha * beta, "-")
+    } else {
+        sweep(tcrossprod(z, beta), 2, alpha, "+")
+    }
+}
+
+mycols <- c("#9C6FAE", "#5284C4", "#00A6AA", "#adbf04", "#F0B500", "#F18F00", "#b10f2e")
+
+tibble(
+  b = c(-2, -1, 0, 1, 2),
+  a = rep(1, 5),
+  z = list(seq(-4, 4, length.out = 100)),
+  blab = factor(b, labels = paste0("b = ", b))
+) |>
+  rowwise() |>
+  mutate(
+    prob = list(c(plogis(eta_fun(b, a, z, IRT_param = TRUE)))),
+  ) |>
+  unnest(c(z, prob)) |>
+  ggplot(aes(z, prob, col = blab, group = blab)) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual(values = mycols) +
+  theme_minimal() +
+  labs(
+    x = "Latent trait (z)",
+    y = "Probability of correct response"
+  ) -> p
+direct.label(p, "angled.boxes")
+```
+
+## Interpretation
+
+### Effect of item discriminations on response probabilities
+
+```{r}
+#| out-width: 100%
+#| fig-height: 3.85
+#| fig-width: 7
+#| fig-align: center
+tibble(
+  b = rep(0, 5),
+  a = c(-1.5, 0, 0.5, 1, 2),
+  z = list(seq(-4, 4, length.out = 100)),
+  blab = factor(a, labels = paste0("a = ", a))
+) |>
+  rowwise() |>
+  mutate(
+    prob = list(c(plogis(eta_fun(b, a, z, IRT_param = TRUE)))),
+  ) |>
+  unnest(c(z, prob)) |>
+  ggplot(aes(z, prob, col = blab, group = blab)) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual(values = mycols) +
+  theme_minimal() +  
+  labs(
+    x = "Latent trait (z)",
+    y = "Probability of correct response"
+  ) -> p
+direct.label(p, "angled.boxes")
+```
+
+## Estimation via maximum marginal likelihood (MML) 
+
+- Maximum marginal likelihood (MML) estimation [[c.f. joint maximum likelihood (JML)]]{.text-gry} requires an additional assumption: $z_s \overset{\text{iid}}\sim N(0, 1)$.
+
+- Given data $\mathbf Y = \mathbf y$, the MML involves maximisation of the likelihood
+$$
+L(\mathbf\theta) = \prod_{s=1}^n \int \prod_{i=1}^p \pi_{si}(\mathbf z,\boldsymbol\theta)^{y_{si}}\big(1-\pi_{si}(\mathbf z,\boldsymbol\theta)\big)^{1-y_{si}} \phi(z_s) \ \text{d} z_s 
+$$
+
+- This intractable integral is usually overcome using quadrature rules.
+
+- Many software to fit IRT models use MML, e.g. `{mirt}` [@chalmers2012mirt] and `{ltm}` [@rizopoulos2007ltm].
+  ```r
+  fit <- ltm::ltm(data ~ z1)
+  ```
+  
+- Bayesian: Stan via `{brms}` [@burkner2021bayesian], and even INLA too.
+
+## Small sample bias
+
+- Bias from MML estimates is $O(n^{-1})$, so in finite samples the bias is typically non-zero [@lord1986maximum], though generally less biased than JML.
+  - Parameters are consistent only when model is correctly specified [@bock1981marginal].
+  - MML is more robust to sample size variations and provides more stable item parameter estimates [@engelen1987review].
+
+```{r}
+#| fig-align: center
+#| out-width: 100%
+#| fig-height: 2.7
+#| fig-width: 8
+load("p_icc.RData")
+p_icc +
+  theme_minimal() +
+  scale_color_manual(values = c("red3", "black")) 
+```
+
+## Bias correction
+
+::: {.nudge-up-large}
+![](figures/bias.png){fig-align=center width=65%}
+:::
+
+::: {.nudge-up-small}
+::: {.nudge-up-large}
+```{r}
+#| html-table-processing: none
+library(gt)
+library(dplyr)
+
+df <- tribble(
+  ~Method, ~Model, ~BG_theta0, ~Type, ~E, ~d, ~theta_hat,
+  "Asymptotic bias correction", "full", "analytical", "explicit", "✓","✓","✓",
+  "Adjusted score functions", "full", "analytical", "implicit", "✓","✓","✗",
+  "Bootstrap", "partial", "simulation", "explicit", "✗","✗","✓",
+  "Jackknife", "partial", "simulation", "explicit", "✗","✗","✓",
+  "Indirect inference", "full", "simulation", "implicit", "✗","✗","✓",
+  "Explicit RBM", "partial", "analytical", "explicit", "✗","✓","✓",
+  "Implicit RBM", "partial", "analytical", "implicit", "✗","✓","✗"
+)
+
+gt(df, rownames_to_stub = TRUE) |>
+  text_transform(
+    locations = cells_body(columns = c(E, d, theta_hat)),
+    fn = \(x) {
+      x |>
+        str_replace("✓", '<span style="color:#004C59">✓</span>') |>
+        str_replace("✗", '<span style="color:#b10f2e">✗</span>')
+      # gt::html(out) 
+  }) |>
+  tab_spanner(md("**Requirements**"), columns = c(E, d, theta_hat)) |>
+  cols_label(
+    BG_theta0 = md("$\\mathcal{B}(\\bar\\vartheta)$"),
+    E = md("$\\mathbb{E}(\\cdot)$"),
+    d = md("$\\hspace{2pt} \\partial \\cdot \\hspace{2pt}$"),
+    theta_hat = md("$\\hspace{4pt} \\hat\\vartheta \\hspace{4pt}$")
+  ) |>
+  cols_align(
+    align = "center",
+    columns = c(E, d, theta_hat)
+  ) |>
+  tab_style(
+    style = "font-weight: bold",
+    locations = cells_column_labels()
+  ) |>
+  tab_options(
+    table.font.size = px(25),
+    table.width = pct(95)
+    # data_row.padding = px(4)
+  ) |>
+  opt_table_font(
+    font = list(
+      google_font("Raleway"),  # loads the font for the table
+      default_fonts()          # sensible fallbacks
+    )
+  )
+```
+:::
+:::
+
+::: aside
+::: {.footnotesize-text}
+1--@efron1975defining, @cordeiro1991bias; 2--@firth1993bias, @kosmidis2009bias; 3--@efron1994introduction, @hall1988bootstrap; 4--@quenouille1956notes, @efron1982jackknife; 5--@gourieroux1993indirect, @mackinnon1998approximate
+:::
+:::
+
+
 
 
 # شكراً جزيلاً {.thanks-slide  background-image="_extensions/haziqj/kaust/KAUST-Thank-you.jpg" style="padding-top:0.5em;padding-bottom:0em"}
